@@ -21,10 +21,10 @@ console.log("listening on port 8080");
 httpserver.on("stream", (stream, headers) => {
     console.log(stream.id);
     
-    websocket.on("request", request=> {
-        console.log(request);
+    websocket.on("stream", (stream, headers)=> {
+        console.log(stream);
 
-        connection = request.accept(null, request.origin)
+        connection = stream.accept(null, stream.origin)
         connection.on("open", () => console.log("Opened!!!"))
         connection.on("close", () => console.log("CLOSED!!!"))
         connection.on("message", message => {
